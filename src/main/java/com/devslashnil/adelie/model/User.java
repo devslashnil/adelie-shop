@@ -11,6 +11,7 @@ import lombok.experimental.Accessors;
 @Accessors(chain = true)
 @MappedSuperclass
 public class User extends BaseEntity {
+
     @NotEmpty(message = "User's email is required")
     private String email;
 
@@ -24,4 +25,5 @@ public class User extends BaseEntity {
     @Column(name = "last_name")
     @NotEmpty(message = "User's last name is required")
     private String lastName;
+
 }

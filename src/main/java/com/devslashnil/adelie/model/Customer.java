@@ -1,7 +1,5 @@
 package com.devslashnil.adelie.model;
 
-import java.io.Serial;
-import java.io.Serializable;
 import java.time.LocalDate;
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
@@ -18,9 +16,7 @@ import lombok.experimental.Accessors;
 @AllArgsConstructor
 @Entity
 @Table(name = "customer")
-public class Customer extends User implements Serializable {
-    @Serial
-    private static final long serialVersionUID = -7422749106883016040L;
+public class Customer extends User {
 
     @OneToOne
     @JoinColumn(name = "address_id", referencedColumnName = "id", nullable=false)
@@ -28,4 +24,5 @@ public class Customer extends User implements Serializable {
     private Address address;
 
     private LocalDate birthdate;
+
 }

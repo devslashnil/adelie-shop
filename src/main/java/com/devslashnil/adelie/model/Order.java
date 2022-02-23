@@ -1,7 +1,5 @@
 package com.devslashnil.adelie.model;
 
-import java.io.Serial;
-import java.io.Serializable;
 import java.math.BigDecimal;
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
@@ -18,9 +16,7 @@ import lombok.experimental.Accessors;
 @AllArgsConstructor
 @Entity
 @Table(name = "order_details")
-public class Order extends TimestampEntity implements Serializable {
-    @Serial
-    private static final long serialVersionUID = 5123135861602665853L;
+public class Order extends TimestampEntity {
 
     @ManyToOne
     @JoinColumn(name = "customer_id", nullable = false)
@@ -33,11 +29,12 @@ public class Order extends TimestampEntity implements Serializable {
     @JoinColumn(name = "payment_id", referencedColumnName = "id")
     private Payment payment;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "status_id", referencedColumnName = "id")
     @NotEmpty(message = "Status of a order is required")
     private OrderStatus status;
 
     @Column(name = "delivery_method")
     private String deliveryMethod;
+
 }

@@ -9,7 +9,9 @@ import lombok.Setter;
 @Setter
 @MappedSuperclass
 public class BaseEntity {
+
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
-    private long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+
 }

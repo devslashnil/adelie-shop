@@ -1,7 +1,5 @@
 package com.devslashnil.adelie.model;
 
-import java.io.Serial;
-import java.io.Serializable;
 import javax.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -16,9 +14,8 @@ import lombok.experimental.Accessors;
 @AllArgsConstructor
 @Entity
 @Table(name = "order_status")
-public class OrderStatus extends BaseEntity implements Serializable {
-    @Serial
-    private static final long serialVersionUID = 2178813884799732670L;
+public class OrderStatus extends BaseEntity {
 
     private String name;
+
 }

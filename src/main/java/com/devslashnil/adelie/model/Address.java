@@ -1,7 +1,5 @@
 package com.devslashnil.adelie.model;
 
-import java.io.Serial;
-import java.io.Serializable;
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;
@@ -17,9 +15,7 @@ import lombok.experimental.Accessors;
 @AllArgsConstructor
 @Entity
 @Table(name = "user_address")
-public class Address extends BaseEntity implements Serializable {
-    @Serial
-    private static final long serialVersionUID = -4782140138430997669L;
+public class Address extends BaseEntity {
 
     @NotEmpty(message = "Country of address is required")
     private String country;
@@ -38,4 +34,5 @@ public class Address extends BaseEntity implements Serializable {
     @Column(name = "address_line_2")
     @NotEmpty(message = "Address line 2 of address is required")
     private String addressLine2;
+
 }

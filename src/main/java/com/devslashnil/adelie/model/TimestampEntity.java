@@ -11,6 +11,7 @@ import org.springframework.data.annotation.LastModifiedDate;
 @Setter
 @MappedSuperclass
 public class TimestampEntity extends BaseEntity  {
+
     @CreatedDate
     @Column(name = "created_at")
     private LocalDateTime createdAt;
@@ -18,4 +19,5 @@ public class TimestampEntity extends BaseEntity  {
     @LastModifiedDate
     @Column(name = "modified_at")
     private LocalDateTime modifiedAt;
+
 }

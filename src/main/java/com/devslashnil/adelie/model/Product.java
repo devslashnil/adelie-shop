@@ -1,7 +1,5 @@
 package com.devslashnil.adelie.model;
 
-import java.io.Serial;
-import java.io.Serializable;
 import java.time.LocalDateTime;
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
@@ -18,9 +16,7 @@ import lombok.experimental.Accessors;
 @AllArgsConstructor
 @Entity
 @Table(name = "product")
-public class Product extends BaseEntity implements Serializable {
-    @Serial
-    private static final long serialVersionUID = -8671870441470778243L;
+public class Product extends BaseEntity {
 
     @NotEmpty(message = "Name of a product is required")
     private String name;
@@ -44,4 +40,5 @@ public class Product extends BaseEntity implements Serializable {
 
     @Column(name = "deleted_at")
     private LocalDateTime deletedAt;
+
 }
