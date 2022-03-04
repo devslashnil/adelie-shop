@@ -1,11 +1,9 @@
 package com.devslashnil.adelie.service;
 
-import java.util.Optional;
-
 public interface CrudService <T, ID> {
     <S extends T> S create(S entity);
 
-    Optional<T> findById(ID id);
+    T findById(ID id);
 
     Iterable<T> findAllById(Iterable<ID> ids);
 
