@@ -1,8 +1,8 @@
 package com.devslashnil.adelie.service;
 
-public interface CrudService <T, ID, DTO> {
+public interface CrudService <ID, DTO> {
 
-    <S extends T> DTO create(S entity);
+    DTO create(DTO entityDTO);
 
     DTO findById(ID id);
 
@@ -10,15 +10,15 @@ public interface CrudService <T, ID, DTO> {
 
     Iterable<DTO> findAll();
 
-    <S extends T> DTO update(S entity);
+    DTO update(DTO entityDTO);
 
     void deleteById(ID  id);
 
-    void delete(T entity);
+    void delete(DTO entityDTO);
 
     void deleteAllById(Iterable<ID> ids);
 
-    void deleteAll(Iterable<? extends T> entities);
+//    void deleteAll(Iterable<? extends DTO> entities);
 
     void deleteAll();
 
