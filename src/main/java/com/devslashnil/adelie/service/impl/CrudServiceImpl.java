@@ -1,39 +1,44 @@
 package com.devslashnil.adelie.service.impl;
 
+import com.devslashnil.adelie.dto.BaseDTO;
 import com.devslashnil.adelie.dto.ProductDTO;
-import com.devslashnil.adelie.dto.convertor.EntityConvertor;
+import com.devslashnil.adelie.dto.convertor.DataConvertor;
 import com.devslashnil.adelie.exception.NotFoundException;
-import com.devslashnil.adelie.model.Product;
 import com.devslashnil.adelie.service.CrudService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.hateoas.RepresentationModel;
 
-import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
 @Slf4j
-public abstract class CrudServiceImpl<T, ID, R extends CrudRepository<T, ID>, DTO extends RepresentationModel<DTO>>
-        implements CrudService<ID, DTO> {
+public abstract class CrudServiceImpl<T, ID extends Number, R extends CrudRepository<T, ID>,
+        DTO extends RepresentationModel<DTO> & BaseDTO> implements CrudService<ID, DTO> {
 
-    private final R dao;
-    private final EntityConvertor<T, DTO> conv;
-    private final Class<DTO> classDTO;
-    private final Class<? extends T> entityClass;
+    protected final R dao;
+    protected final DataConvertor<T, DTO> conv;
+    protected final Class<DTO> classDTO;
+    protected final Class<? extends T> entityClass;
 
-    protected CrudServiceImpl(R dao, Class<DTO> classDTO, Class<T> entityClass, EntityConvertor<T, DTO> conv) {
+    protected CrudServiceImpl(R dao, Class<DTO> classDTO, Class<T> entityClass, DataConvertor<T, DTO> conv) {
         this.dao = dao;
         this.conv = conv;
         this.classDTO = classDTO;
         this.entityClass = entityClass;
     }
 
-    protected abstract DTO addSelfLink(DTO dto);
+    protected DTO addSelfLink(DTO dto) {
+        //noinspection unchecked
+        return dto.add(linkTo(methodOn(getClass()).findById(dto.getId())).withRel("self"));
+    }
 
-    protected abstract DTO addListLink(DTO dto);
+    protected DTO addListLink(DTO dto) {
+        return dto.add(linkTo(methodOn(getClass()).findAll()).withRel("All entities"));
+    }
 
     @Override
     public DTO create(DTO entityDTO) {

@@ -1,6 +1,8 @@
 package com.devslashnil.adelie.service;
 
-public interface CrudService <ID, DTO> {
+import org.springframework.hateoas.RepresentationModel;
+
+public interface CrudService <ID extends Number, DTO extends RepresentationModel<DTO>> {
 
     DTO create(DTO entityDTO);
 

@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
-public record EntityConvertor<T, DTO extends RepresentationModel<DTO>>(ModelMapper modelMapper) {
+public record DataConvertor<T, DTO extends RepresentationModel<DTO>>(ModelMapper modelMapper) {
 
      public <S extends T> DTO convertToDTO(S entity, Class<DTO> mappingClass) {
           return modelMapper.map(entity, mappingClass);

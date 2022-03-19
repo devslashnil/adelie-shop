@@ -9,19 +9,18 @@ import org.springframework.hateoas.RepresentationModel;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
-import java.time.LocalDate;
 
 @Builder
 @Data
 @EqualsAndHashCode(callSuper = false)
-public class CustomerDTO extends RepresentationModel<CustomerDTO> implements BaseDTO {
+public class AccountDTO extends RepresentationModel<AccountDTO> implements BaseDTO {
 
     @NotEmpty
     private int id;
 
     @NotEmpty
     @Size(max = 50)
-    @Pattern(regexp = Patterns.ALPHANUMERIC)
+    @Pattern(regexp = Patterns.EMAIL_REGEX)
     private String email;
 
     @Size(min = 6, max = 50)
@@ -37,25 +36,5 @@ public class CustomerDTO extends RepresentationModel<CustomerDTO> implements Bas
     @Size(max = 50)
     @Pattern(regexp = Patterns.NAME)
     private String lastName;
-
-    @NotEmpty
-    private LocalDate birthdate;
-
-    @NotEmpty
-    @Size(max = 50)
-    private String country;
-
-    @NotEmpty
-    private int postalCode;
-
-    @NotEmpty
-    @Size(max = 100)
-    @Pattern(regexp = Patterns.USER_ADDRESS_REGEX)
-    private String addressLine1;
-
-    @NotEmpty
-    @Size(max = 100)
-    @Pattern(regexp = Patterns.USER_ADDRESS_REGEX)
-    private String addressLine2;
 
 }
